@@ -16,6 +16,6 @@ namespace WebshopAPI.Models
         public decimal productPrice { get; set; }
         public string productImage { get; set; }
         public DateTime productAddingDate { get; set; }
-        public string description { get; set; }
+        public string productDescription { get; set; }
     }
 }
