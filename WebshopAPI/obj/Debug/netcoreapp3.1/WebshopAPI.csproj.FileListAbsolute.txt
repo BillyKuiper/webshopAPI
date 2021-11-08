@@ -62,9 +62,9 @@ C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\static
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\staticwebassets\WebshopAPI.StaticWebAssets.xml
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\scopedcss\bundle\WebshopAPI.styles.css
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\WebshopAPI.RazorTargetAssemblyInfo.cache
-C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\WebshopAPI.csproj.CopyComplete
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\WebshopAPI.dll
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\WebshopAPI.pdb
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\WebshopAPI.genruntimeconfig.cache
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

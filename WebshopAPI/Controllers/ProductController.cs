@@ -20,9 +20,10 @@ namespace WebshopAPI.Controllers
         public ProductController(DataContext dc)
         {
             this.dc = dc;
+            //clears database and insert basic data
             StartUpScript start = new StartUpScript(dc);
         }
-        
+
         [HttpGet]
         public string GetAll()
         {
@@ -39,6 +40,7 @@ namespace WebshopAPI.Controllers
             var query = from Product in dc.Products
                         where Product.productId <= 4
                         select Product;
+
             return JsonConvert.SerializeObject(query);
         }
 
