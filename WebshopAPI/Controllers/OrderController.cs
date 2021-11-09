@@ -15,7 +15,7 @@ namespace WebshopAPI.Controllers
         [Route("/[controller]/order")]
         [HttpPost]
         [Authorize]
-        public void CreateOrder()
+        public void CreateOrder([FromBody] List<object> shoppingCart)
         {
             var x = 0;
             var y = 2;
