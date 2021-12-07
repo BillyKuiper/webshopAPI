@@ -68,3 +68,4 @@ C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\Websho
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\billy\source\repos\WebshopAPI\WebshopAPI\obj\Debug\netcoreapp3.1\WebshopAPI.csproj.CopyComplete

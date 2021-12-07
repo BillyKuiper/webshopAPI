@@ -10,8 +10,8 @@ using WebshopAPI.Data;
 namespace WebshopAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211005131409_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20211122123935_addedOrderModals")]
+    partial class addedOrderModals
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,6 +21,42 @@ namespace WebshopAPI.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("WebshopAPI.Models.Order", b =>
+                {
+                    b.Property<int>("orderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("orderId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("WebshopAPI.Models.OrderProduct", b =>
+                {
+                    b.Property<int>("orderProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("productId")
+                        .HasColumnType("int");
+
+                    b.HasKey("orderProductId");
+
+                    b.ToTable("OrderProducts");
+                });
+
             modelBuilder.Entity("WebshopAPI.Models.Product", b =>
                 {
                     b.Property<int>("productId")
@@ -28,11 +64,11 @@ namespace WebshopAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("productAddingDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("productDescription")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("productImage")
                         .HasColumnType("nvarchar(max)");
