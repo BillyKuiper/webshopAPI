@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WebshopAPI.Models;
 using WebshopAPI.Services;
@@ -74,9 +75,23 @@ namespace WebShopAPI.test
 
         public List<Product> GetHome()
         {
+            int i = 0;
             List<Product> first4 = new List<Product>();
-
-            first4 = alleProducten.GetRange(1, 4);
+            foreach(Product p in alleProducten)
+            {
+                if(i == 4)
+                {
+                    first4.Add(p);
+                    break;
+                }
+                else
+                {
+                    first4.Add(p);
+                }
+               
+                i++;
+            }
+            
             return first4;
         }
 
