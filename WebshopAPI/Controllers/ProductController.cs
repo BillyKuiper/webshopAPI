@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using WebshopAPI.Data;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
+using WebshopAPI.Services;
+using WebshopAPI.Models;
 
 namespace WebshopAPI.Controllers
 {
@@ -16,18 +18,20 @@ namespace WebshopAPI.Controllers
     [ApiController]
     public class ProductController : Controller
     {
-        private readonly DataContext dc;
-        public ProductController(DataContext dc)
+        private readonly IProductService _service;
+
+        public ProductController(IProductService _service)
         {
-            this.dc = dc;
+            this._service = _service;
             //clears database and insert basic data
-            StartUpScript start = new StartUpScript(dc);
+            //StartUpScript start = new StartUpScript(dc);
         }
 
         [HttpGet]
         public string GetAll()
         {
-            var products = dc.Products.ToList();
+            var products = _service.GetAll();
+            //var products = dc.Products.ToList();
 
             var returnableProducts = JsonConvert.SerializeObject(products);
             return returnableProducts;
@@ -37,21 +41,17 @@ namespace WebshopAPI.Controllers
         [HttpGet]
         public string GetHome()
         {
-            var query = from Product in dc.Products
-                        where Product.productId <= 4
-                        select Product;
-
-            return JsonConvert.SerializeObject(query);
+            List<Product> producten = _service.GetHome();
+            return JsonConvert.SerializeObject(producten);
         }
 
         [Route("/[controller]/{id}")]
         [HttpGet]
         public string GetHome(int id)
         {
-            var query = from Product in dc.Products
-                        where Product.productId == id
-                        select Product;
-            return JsonConvert.SerializeObject(query);
+            List<Product> producten = _service.GetHome(id);
+
+            return JsonConvert.SerializeObject(producten);
         }
     }
 }
