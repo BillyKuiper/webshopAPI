@@ -27,7 +27,7 @@ namespace WebshopAPI.Controllers
         [Route("/[controller]/order")]
         [HttpPost]
         [Authorize]
-        public void CreateOrder([FromHeader] string Authorization, [FromBody] object[] shoppingCart)
+        public bool CreateOrder([FromHeader] string Authorization, [FromBody] object[] shoppingCart)
         {
             var handler = new JwtSecurityTokenHandler();
             string[] tokenSplit = Authorization.Split(" ");
@@ -45,8 +45,8 @@ namespace WebshopAPI.Controllers
                     userId = c.Value;
                 }
             }
-            Order order = _service.CreateOrder(userId, producten);
-            bool result = _service.CreateOrderItems(order, producten);
+            Order order = _service.CreateOrder(userId);
+            return _service.CreateOrderItems(order, producten);
         }
     }
 }

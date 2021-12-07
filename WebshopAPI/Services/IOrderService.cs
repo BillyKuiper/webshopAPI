@@ -8,7 +8,7 @@ namespace WebshopAPI.Services
 {
     public interface IOrderService
     {
-        public Order CreateOrder(string Authorization, List<ShoppingCart> shoppingCart);
+        public Order CreateOrder(string userId);
         public bool CreateOrderItems(Order o, List<ShoppingCart> cart);
     }
 }

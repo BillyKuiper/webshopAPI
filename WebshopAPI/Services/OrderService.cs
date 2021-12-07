@@ -16,7 +16,7 @@ namespace WebshopAPI.Services
             this.dc = dc;
         }
 
-        public Order CreateOrder(string userId, List<ShoppingCart> shoppingCart)
+        public Order CreateOrder(string userId)
         {
             Order o = new Order();
             o.userId = Convert.ToInt32(userId);
