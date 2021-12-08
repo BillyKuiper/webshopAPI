@@ -12,5 +12,7 @@ namespace WebshopAPI.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) {}
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
     }
 }
