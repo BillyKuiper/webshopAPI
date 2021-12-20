@@ -29,24 +29,36 @@ namespace WebshopAPI.Controllers
         [Authorize]
         public bool CreateOrder([FromHeader] string Authorization, [FromBody] object[] shoppingCart)
         {
-            var handler = new JwtSecurityTokenHandler();
-            string[] tokenSplit = Authorization.Split(" ");
-            var jwtSecurityToken = handler.ReadJwtToken(tokenSplit[1]);
-            List<ShoppingCart> producten = new List<ShoppingCart>();
-            foreach (object obj in shoppingCart)
+            try
             {
-                producten.Add(Newtonsoft.Json.JsonConvert.DeserializeObject<ShoppingCart>(Convert.ToString(obj)));
-            }
-            string userId = null;
-            foreach (Claim c in jwtSecurityToken.Claims)
-            {
-                if (c.Type == "userId")
+                var handler = new JwtSecurityTokenHandler();
+                string[] tokenSplit = Authorization.Split(" ");
+                var jwtSecurityToken = handler.ReadJwtToken(tokenSplit[1]);
+                List<ShoppingCart> producten = new List<ShoppingCart>();
+                if(shoppingCart.Count() == 0)
                 {
-                    userId = c.Value;
+                    return false;
                 }
+                foreach (object obj in shoppingCart)
+                {
+                    producten.Add(Newtonsoft.Json.JsonConvert.DeserializeObject<ShoppingCart>(Convert.ToString(obj)));
+                }
+                string userId = null;
+                foreach (Claim c in jwtSecurityToken.Claims)
+                {
+                    if (c.Type == "userId")
+                    {
+                        userId = c.Value;
+                    }
+                }
+                Order order = _service.CreateOrder(userId);
+                return _service.CreateOrderItems(order, producten);
             }
-            Order order = _service.CreateOrder(userId);
-            return _service.CreateOrderItems(order, producten);
+            catch
+            {
+                return false;
+            }
+            
         }
     }
 }

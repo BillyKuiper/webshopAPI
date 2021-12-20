@@ -74,5 +74,47 @@ namespace WebShopAPI.test
             Assert.IsTrue(result);
         }
 
+        [Test]
+        public void CreateOrderNoToken()
+        {
+            //Arrange
+            var controller = new OrderController(_service);
+            string Auth = null;
+
+            //Act
+            var result = controller.CreateOrder(Auth, productToOrder);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void CreateOrderNoCart()
+        {
+            //Arrange
+            var controller = new OrderController(_service);
+            string Auth = "Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiMCIsIm5iZiI6MTYzODg5NDczNywiZXhwIjoxNjM4ODk4MzM3fQ.bMcLbwvW0u1bXT7daDIFuqUadla-0gZ8SdYCabxYNcI";
+
+            //Act
+            var result = controller.CreateOrder(Auth, null);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void CreateOrderNoCartNoToken()
+        {
+            //Arrange
+            var controller = new OrderController(_service);
+            string Auth = null;
+
+            //Act
+            var result = controller.CreateOrder(Auth, null);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
     }
 }
