@@ -56,5 +56,20 @@ namespace WebShopAPI.test
             //Assert
             Assert.IsNotNull(model);
         }
+
+        [Test]
+        public void getSingleProductNoId()
+        {
+            //Arrange
+            var controller = new ProductController(_service);
+            int x = 0;
+
+            //Act
+            var resultString = controller.GetHome(x);
+            var model = JsonConvert.DeserializeObject(resultString);
+
+            //Assert
+            Assert.IsNull(model);
+        }
     }
 }
