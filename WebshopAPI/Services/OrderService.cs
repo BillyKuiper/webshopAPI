@@ -40,6 +40,33 @@ namespace WebshopAPI.Services
             dc.SaveChanges();
             return true;
         }
+
+        public bool deleteOrders(int orderId)
+        {
+            try
+            {
+                Order o = (from Order in dc.Orders
+                           where Order.orderId == orderId
+                           select Order).FirstOrDefault();
+                dc.Orders.Remove(o);
+                dc.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<Order> getOrders(string userId)
+        {
+            List<Order> orders = (from Order in dc.Orders
+                                 where Order.userId == Convert.ToInt32(userId)
+                                 select Order).ToList();
+     
+            return orders;
+            
+        }
     }
     
 }

@@ -60,5 +60,42 @@ namespace WebshopAPI.Controllers
             }
             
         }
+
+        [Route("/[controller]/allOrders")]
+        [HttpGet]
+        [Authorize]
+        public List<Order> getOrdersByToken([FromHeader] string Authorization)
+        {
+            try
+            {
+                var handler = new JwtSecurityTokenHandler();
+                string[] tokenSplit = Authorization.Split(" ");
+                var jwtSecurityToken = handler.ReadJwtToken(tokenSplit[1]);
+                string userId = "";
+                foreach (Claim c in jwtSecurityToken.Claims)
+                {
+                    if (c.Type == "userId")
+                    {
+                        userId = c.Value;
+                    }
+                }
+                //order ophalen met nummer
+                //
+                return _service.getOrders(userId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        [Route("/[controller]/removeOrder")]
+        [HttpDelete]
+        [Authorize]
+        public void deleteOrder(object orderNO)
+        {
+            Order o = Newtonsoft.Json.JsonConvert.DeserializeObject<Order>(Convert.ToString(orderNO));
+            _service.deleteOrders(o.orderId);
+        }
     }
 }

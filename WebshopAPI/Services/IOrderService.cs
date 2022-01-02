@@ -10,5 +10,7 @@ namespace WebshopAPI.Services
     {
         public Order CreateOrder(string userId);
         public bool CreateOrderItems(Order o, List<ShoppingCart> cart);
+        public List<Order> getOrders(string userId);
+        public bool deleteOrders(int orderId);
     }
 }
